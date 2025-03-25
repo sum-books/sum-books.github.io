@@ -71,7 +71,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      margin-left: 100px; /* 약간 오른쪽으로 이동 */
+      margin-left: 100px; /* 중앙 메뉴를 약간 오른쪽으로 이동 */
     }
     
     /* 네비게이션 메뉴(ul) */
@@ -91,6 +91,7 @@
       font-weight: 500;
       color: var(--primary-color);
       transition: color var(--transition-speed);
+      white-space: nowrap; /* 텍스트 줄바꿈 방지 */
     }
     
     nav ul li a:hover {
@@ -143,6 +144,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top center; /* 상단 부분을 우선 노출 */
       z-index: -1; /* 콘텐츠 뒤로 보내기 */
     }
     .hero-content {
@@ -294,6 +296,10 @@
       .lang-toggle button {
         font-size: 0.8rem;
         padding: 4px 8px;
+      }
+      /* 모바일에서 로고 크기 축소 */
+      header .logo img {
+        width: 70px;
       }
       .hero-content h1 {
         font-size: 2.5rem;

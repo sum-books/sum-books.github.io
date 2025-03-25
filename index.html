@@ -66,12 +66,12 @@
       transform: scale(1.05);
     }
     
-    /* 네비게이션 영역: 중앙 정렬 */
+    /* 네비게이션 영역: 중앙 정렬 (데스크탑) */
     header nav {
       flex: 1;
       display: flex;
       justify-content: center;
-      margin-left: 100px; /* 중앙 메뉴를 약간 오른쪽으로 이동 */
+      margin-left: 100px; /* 데스크탑에서 메뉴를 약간 오른쪽으로 */
     }
     
     /* 네비게이션 메뉴(ul) */
@@ -91,7 +91,7 @@
       font-weight: 500;
       color: var(--primary-color);
       transition: color var(--transition-speed);
-      white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+      white-space: nowrap;
     }
     
     nav ul li a:hover {
@@ -124,7 +124,7 @@
     
     /* 기본: 영어 콘텐츠 숨김 */
     .lang-en { display: none; }
-    
+   
     /* Hero Section */
     .hero {
       position: relative;
@@ -134,7 +134,7 @@
       align-items: center;
       text-align: center;
       margin-top: 150px; /* 헤더 높이 고려 */
-      overflow: hidden; /* 영상이 넘치지 않도록 */
+      overflow: hidden;
     }
     /* 영상 배경 스타일 */
     .hero-video {
@@ -144,8 +144,8 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center; /* 상단 부분을 우선 노출 */
-      z-index: -1; /* 콘텐츠 뒤로 보내기 */
+      object-position: top center;
+      z-index: -1;
     }
     .hero-content {
       position: relative;
@@ -287,19 +287,30 @@
     /* Responsive */
     @media (max-width: 768px) {
       header {
+        flex-direction: column;
+        align-items: center;
         padding: 15px 20px;
+      }
+      /* 로고와 nav 사이, nav와 언어 토글 사이 간격 조정 */
+      header .logo {
+        margin-bottom: 10px;
+      }
+      header nav {
+        margin: 10px 0;
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
       }
       nav ul li {
         margin: 0 8px;
         font-size: 0.9rem;
       }
+      .lang-toggle {
+        margin-top: 10px;
+      }
       .lang-toggle button {
         font-size: 0.8rem;
         padding: 4px 8px;
-      }
-      /* 모바일에서 로고 크기 축소 */
-      header .logo img {
-        width: 70px;
       }
       .hero-content h1 {
         font-size: 2.5rem;

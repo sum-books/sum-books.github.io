@@ -71,7 +71,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      margin-left: 100px; /* 데스크탑에서 메뉴를 약간 오른쪽으로 */
+      margin-left: 100px;
     }
     
     /* 네비게이션 메뉴(ul) */
@@ -133,7 +133,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      margin-top: 150px; /* 헤더 높이 고려 */
+      margin-top: 150px;
       overflow: hidden;
     }
     /* 영상 배경 스타일 */
@@ -284,7 +284,26 @@
       font-size: 0.9rem;
     }
     
-    /* Responsive */
+    /* Back to Top Button */
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background-color: var(--accent-color);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      display: none; /* 기본은 숨김 */
+      z-index: 1000;
+      transition: background var(--transition-speed);
+    }
+    #back-to-top:hover {
+      background-color: #1e8a4d;
+    }
+    
+    /* Responsive (모바일) */
     @media (max-width: 768px) {
       header {
         position: relative;
@@ -292,7 +311,6 @@
         align-items: center;
         padding: 15px 20px;
       }
-      /* 로고와 nav 사이, nav와 언어 토글 사이 간격 조정 */
       header .logo {
         margin-bottom: 10px;
       }
@@ -330,6 +348,12 @@
       }
     }
     
+    /* 데스크탑 (화면 너비 769px 이상)에서 히어로 섹션 높이 늘리기 */
+    @media (min-width: 769px) {
+      .hero {
+        height: 120vh;
+      }
+    }
   </style>
 </head>
 <body>
@@ -342,6 +366,7 @@
     <nav>
       <!-- 한글 네비게이션 -->
       <ul class="nav-ko">
+        <!-- 홈 항목을 주석 처리하여 제거 -->
         <!-- <li><a href="#hero">홈</a></li> -->
         <li><a href="#about">회사소개</a></li>
         <li><a href="#books">대표 도서</a></li>
@@ -515,8 +540,11 @@
       <p>&copy; 2025 SUM Publishing. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Back to Top 버튼 -->
+  <button id="back-to-top">▲ Top</button>
   
-  <!-- 언어 전환 스크립트 -->
+  <!-- 언어 전환 및 Back to Top 스크립트 -->
   <script>
     const btnKo = document.getElementById("btn-ko");
     const btnEn = document.getElementById("btn-en");
@@ -541,6 +569,19 @@
       document.querySelectorAll(".lang-en, .nav-en").forEach(el => {
         el.style.display = setDisplay(el);
       });
+    });
+
+    // Back to Top 버튼 기능
+    const backToTopButton = document.getElementById("back-to-top");
+    window.addEventListener("scroll", function(){
+      if(window.scrollY > 300) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    });
+    backToTopButton.addEventListener("click", function(){
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
   

@@ -175,57 +175,6 @@
     .hero-content a.btn:hover {
       background: #1e8a4d;
     }
-  
-    /* 슬라이더 컨테이너 */
-    .slider {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* 슬라이더 이미지 */
-    .slider img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(255, 0, 0, 0.635);
-    }
-    .slider button svg {
-      width: 32px; /* 원래 24px에서 32px로 증가 */
-      height: 32px;
-    }
-
-    /* 현대적인 SVG 화살표 버튼 스타일 */
-    .slider button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.302);
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 10;
-      border-radius: 50%;
-      transition: background 0.3s, transform 0.3s;
-      outline: none;
-    }
-
-    /* 호버 시 효과 */
-    .slider button:hover {
-      background: rgba(8, 8, 8, 0.234);
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    /* 왼쪽 버튼 위치 */
-    .slider .prev {
-      left: 10px;
-    }
-
-    /* 오른쪽 버튼 위치 */
-    .slider .next {
-      right: 10px;
-    }
-
     
     /* Section Styles */
     section {
@@ -287,11 +236,6 @@
       flex: 1 1 40%;
       max-width: 400px;
     }
-    .book-image img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
     .book-details {
       flex: 1 1 55%;
     }
@@ -308,6 +252,47 @@
     .book-details ul {
       list-style: disc;
       margin-left: 20px;
+    }
+    
+    /* 슬라이더 컨테이너 */
+    .slider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .slider button svg {
+      width: 32px; /* 원래 24px에서 32px로 증가 */
+      height: 32px;
+    }
+    /* 세련된 SVG 화살표 버튼 스타일 */
+    .slider button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+      transition: background 0.3s, transform 0.3s;
+      outline: none;
+    }
+    .slider button:hover {
+      background: rgba(255, 255, 255, 0.564);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .slider .prev {
+      left: 10px;
+    }
+    .slider .next {
+      right: 10px;
     }
     
     /* Projects Section */
@@ -335,7 +320,7 @@
       font-size: 0.9rem;
     }
     
-    /* Back to Top Button */
+    /* Back to Top 버튼 */
     #back-to-top {
       position: fixed;
       bottom: 20px;
@@ -346,7 +331,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      display: none; /* 기본은 숨김 */
+      display: none;
       z-index: 1000;
       transition: background var(--transition-speed);
     }
@@ -399,7 +384,6 @@
       }
     }
     
-    /* 데스크탑 (화면 너비 769px 이상)에서 히어로 섹션 높이 늘리기 */
     @media (min-width: 769px) {
       .hero {
         height: 120vh;
@@ -417,15 +401,12 @@
     <nav>
       <!-- 한글 네비게이션 -->
       <ul class="nav-ko">
-        <!-- 홈 항목을 주석 처리하여 제거 -->
-        <!-- <li><a href="#hero">홈</a></li> -->
         <li><a href="#about">회사소개</a></li>
         <li><a href="#books">대표 도서</a></li>
         <li><a href="#projects">프로젝트</a></li>
       </ul>
       <!-- 영어 네비게이션 (기본 숨김) -->
       <ul class="nav-en">
-        <!-- <li><a href="#hero">Home</a></li> -->
         <li><a href="#about">About</a></li>
         <li><a href="#books">Books</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -439,19 +420,16 @@
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
-    <!-- 영상 배경 -->
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="video3.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
     <div class="hero-content">
-      <!-- 한글 버전 -->
       <div class="lang-ko">
         <h1>숨 : SUM</h1>
         <p>숨을 불어넣다 / 생각을 더하다</p>
         <a href="#about" class="btn">더 알아보기</a>
       </div>
-      <!-- 영어 버전 -->
       <div class="lang-en">
         <h1>숨 : SUM</h1>
         <p>Breathe Life / Add Thought</p>
@@ -462,7 +440,6 @@
 
   <!-- About Section -->
   <section id="about">
-    <!-- 한글 버전 -->
     <div class="lang-ko">
       <h2>회사 소개</h2>
       <div class="about-container">
@@ -485,7 +462,6 @@
         </div>
       </div>
     </div>
-    <!-- 영어 버전 -->
     <div class="lang-en">
       <h2>About</h2>
       <div class="about-container">
@@ -509,13 +485,12 @@
     </div>
   </section>
 
+  <!-- Books Section -->
   <section id="books">
-    <!-- 한글 버전 -->
     <div class="lang-ko">
       <h2>대표 도서</h2>
       <div class="book-container">
         <div class="book-image">
-          <!-- 슬라이더 컨테이너 -->
           <div class="slider">
             <button class="prev">
               <svg viewBox="0 0 24 24" width="24" height="24">
@@ -545,7 +520,6 @@
         </div>
       </div>
     </div>
-    <!-- 영어 버전 -->
     <div class="lang-en">
       <h2>Books</h2>
       <div class="book-container">
@@ -556,7 +530,7 @@
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
               </svg>
             </button>
-            <img id="book-slider-img" src="book_p0.png" alt="대표 도서 이미지">
+            <img id="book-slider-img-en" src="book_p0.png" alt="Book Image">
             <button class="next">
               <svg viewBox="0 0 24 24" width="24" height="24">
                 <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/>
@@ -580,10 +554,8 @@
     </div>
   </section>
 
-
   <!-- Projects Section -->
   <section id="projects">
-    <!-- 한글 버전 -->
     <div class="lang-ko">
       <h2>프로젝트</h2>
       <ul class="project-list">
@@ -593,7 +565,6 @@
         </li>
       </ul>
     </div>
-    <!-- 영어 버전 -->
     <div class="lang-en">
       <h2>Projects</h2>
       <ul class="project-list">
@@ -607,11 +578,9 @@
 
   <!-- Footer -->
   <footer>
-    <!-- 한글 버전 -->
     <div class="lang-ko">
       <p>&copy; 2025 숨 출판사. All rights reserved.</p>
     </div>
-    <!-- 영어 버전 -->
     <div class="lang-en">
       <p>&copy; 2025 SUM Publishing. All rights reserved.</p>
     </div>
@@ -620,8 +589,9 @@
   <!-- Back to Top 버튼 -->
   <button id="back-to-top">▲ Top</button>
   
-  <!-- 언어 전환 및 Back to Top 스크립트 -->
+  <!-- 언어 전환 및 슬라이더, Back to Top 스크립트 -->
   <script>
+    // 언어 토글 기능
     const btnKo = document.getElementById("btn-ko");
     const btnEn = document.getElementById("btn-en");
 
@@ -659,23 +629,15 @@
     backToTopButton.addEventListener("click", function(){
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-  </script>
 
-
-  <script>
-    // 슬라이더에 사용할 이미지 배열
+    // 슬라이더 기능
     const sliderImages = ["book_p0.png", "book_p1.png", "book_p2.png"];
     let currentIndex = 0;
-
-    // 한글 버전과 영어 버전 이미지 요소 가져오기
     const sliderImgElement = document.getElementById("book-slider-img");
     const sliderImgElementEn = document.getElementById("book-slider-img-en");
-
-    // 화살표 버튼 요소들
     const prevButtons = document.querySelectorAll('.slider .prev');
     const nextButtons = document.querySelectorAll('.slider .next');
 
-    // 이미지 업데이트 함수
     function updateImage() {
       if (sliderImgElement) {
         sliderImgElement.src = sliderImages[currentIndex];
@@ -686,15 +648,12 @@
       updateArrows();
     }
 
-    // 화살표 표시 업데이트: 첫 페이지에서는 왼쪽, 마지막 페이지에서는 오른쪽 숨기기
     function updateArrows() {
-      // 첫 페이지일 때
       if (currentIndex === 0) {
         prevButtons.forEach(button => button.style.display = "none");
       } else {
         prevButtons.forEach(button => button.style.display = "block");
       }
-      // 마지막 페이지일 때
       if (currentIndex === sliderImages.length - 1) {
         nextButtons.forEach(button => button.style.display = "none");
       } else {
@@ -702,7 +661,6 @@
       }
     }
 
-    // 좌측 버튼 클릭 시 (이전 이미지)
     prevButtons.forEach(button => {
       button.addEventListener('click', () => {
         if (currentIndex > 0) {
@@ -712,7 +670,6 @@
       });
     });
 
-    // 우측 버튼 클릭 시 (다음 이미지)
     nextButtons.forEach(button => {
       button.addEventListener('click', () => {
         if (currentIndex < sliderImages.length - 1) {
@@ -722,9 +679,7 @@
       });
     });
 
-    // 초기화 시 화살표 업데이트
     updateArrows();
   </script>
-
 </body>
 </html>

@@ -254,7 +254,7 @@
       margin-left: 20px;
     }
     
-    /* 슬라이더 컨테이너 */
+    /* 슬라이더 컨테이너 및 버튼 */
     .slider {
       position: relative;
       display: flex;
@@ -266,17 +266,11 @@
       border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .slider button svg {
-      width: 32px; /* 원래 24px에서 32px로 증가 */
-      height: 32px;
-    }
-    /* 세련된 SVG 화살표 버튼 스타일 */
     .slider button {
-      color: #000000cd;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.282);
       border: none;
       padding: 10px;
       cursor: pointer;
@@ -284,10 +278,15 @@
       border-radius: 50%;
       transition: background 0.3s, transform 0.3s;
       outline: none;
+      color: #000; /* 검정색으로 지정 */
     }
     .slider button:hover {
-      background: rgba(255, 255, 255, 0.564);
+      background: rgba(249, 249, 249, 0.6);
       transform: translateY(-50%) scale(1.1);
+    }
+    .slider button svg {
+      width: 32px; /* 아이콘 크기 확대 */
+      height: 32px;
     }
     .slider .prev {
       left: 10px;
@@ -494,13 +493,13 @@
         <div class="book-image">
           <div class="slider">
             <button class="prev">
-              <svg viewBox="0 0 24 24" width="24" height="24">
+              <svg viewBox="0 0 24 24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
               </svg>
             </button>
             <img id="book-slider-img" src="book_p0.png" alt="대표 도서 이미지">
             <button class="next">
-              <svg viewBox="0 0 24 24" width="24" height="24">
+              <svg viewBox="0 0 24 24">
                 <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/>
               </svg>
             </button>
@@ -527,13 +526,13 @@
         <div class="book-image">
           <div class="slider">
             <button class="prev">
-              <svg viewBox="0 0 24 24" width="24" height="24">
+              <svg viewBox="0 0 24 24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
               </svg>
             </button>
-            <img id="book-slider-img-en" src="book_p0.png" alt="Book Image">
+            <img id="book-slider-img-en" src="booke_p0.png" alt="Book Image">
             <button class="next">
-              <svg viewBox="0 0 24 24" width="24" height="24">
+              <svg viewBox="0 0 24 24">
                 <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/>
               </svg>
             </button>
@@ -631,56 +630,67 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // 슬라이더 기능
-    const sliderImages = ["book_p0.png", "book_p1.png", "book_p2.png"];
-    let currentIndex = 0;
-    const sliderImgElement = document.getElementById("book-slider-img");
+    /* === 슬라이더 기능 (한글 버전) === */
+    const sliderImagesKo = ["book_p0.png", "book_p1.png", "book_p2.png"];
+    let currentIndexKo = 0;
+    const sliderImgElementKo = document.getElementById("book-slider-img");
+    const prevButtonKo = document.querySelector(".lang-ko .slider .prev");
+    const nextButtonKo = document.querySelector(".lang-ko .slider .next");
+
+    function updateImageKo() {
+      sliderImgElementKo.src = sliderImagesKo[currentIndexKo];
+      updateArrowsKo();
+    }
+    
+    function updateArrowsKo() {
+      prevButtonKo.style.display = currentIndexKo === 0 ? "none" : "block";
+      nextButtonKo.style.display = currentIndexKo === sliderImagesKo.length - 1 ? "none" : "block";
+    }
+    
+    prevButtonKo.addEventListener("click", () => {
+      if (currentIndexKo > 0) {
+        currentIndexKo--;
+        updateImageKo();
+      }
+    });
+    nextButtonKo.addEventListener("click", () => {
+      if (currentIndexKo < sliderImagesKo.length - 1) {
+        currentIndexKo++;
+        updateImageKo();
+      }
+    });
+    updateImageKo();
+
+    /* === 슬라이더 기능 (영어 버전) === */
+    const sliderImagesEn = ["booke_p0.png", "booke_p1.png", "booke_p2.png"];
+    let currentIndexEn = 0;
     const sliderImgElementEn = document.getElementById("book-slider-img-en");
-    const prevButtons = document.querySelectorAll('.slider .prev');
-    const nextButtons = document.querySelectorAll('.slider .next');
+    const prevButtonEn = document.querySelector(".lang-en .slider .prev");
+    const nextButtonEn = document.querySelector(".lang-en .slider .next");
 
-    function updateImage() {
-      if (sliderImgElement) {
-        sliderImgElement.src = sliderImages[currentIndex];
-      }
-      if (sliderImgElementEn) {
-        sliderImgElementEn.src = sliderImages[currentIndex];
-      }
-      updateArrows();
+    function updateImageEn() {
+      sliderImgElementEn.src = sliderImagesEn[currentIndexEn];
+      updateArrowsEn();
     }
-
-    function updateArrows() {
-      if (currentIndex === 0) {
-        prevButtons.forEach(button => button.style.display = "none");
-      } else {
-        prevButtons.forEach(button => button.style.display = "block");
-      }
-      if (currentIndex === sliderImages.length - 1) {
-        nextButtons.forEach(button => button.style.display = "none");
-      } else {
-        nextButtons.forEach(button => button.style.display = "block");
-      }
+    
+    function updateArrowsEn() {
+      prevButtonEn.style.display = currentIndexEn === 0 ? "none" : "block";
+      nextButtonEn.style.display = currentIndexEn === sliderImagesEn.length - 1 ? "none" : "block";
     }
-
-    prevButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (currentIndex > 0) {
-          currentIndex--;
-          updateImage();
-        }
-      });
+    
+    prevButtonEn.addEventListener("click", () => {
+      if (currentIndexEn > 0) {
+        currentIndexEn--;
+        updateImageEn();
+      }
     });
-
-    nextButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        if (currentIndex < sliderImages.length - 1) {
-          currentIndex++;
-          updateImage();
-        }
-      });
+    nextButtonEn.addEventListener("click", () => {
+      if (currentIndexEn < sliderImagesEn.length - 1) {
+        currentIndexEn++;
+        updateImageEn();
+      }
     });
-
-    updateArrows();
+    updateImageEn();
   </script>
 </body>
 </html>

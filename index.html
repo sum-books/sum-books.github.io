@@ -175,6 +175,57 @@
     .hero-content a.btn:hover {
       background: #1e8a4d;
     }
+  
+    /* 슬라이더 컨테이너 */
+    .slider {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 슬라이더 이미지 */
+    .slider img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(255, 0, 0, 0.635);
+    }
+    .slider button svg {
+      width: 32px; /* 원래 24px에서 32px로 증가 */
+      height: 32px;
+    }
+
+    /* 현대적인 SVG 화살표 버튼 스타일 */
+    .slider button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.302);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+      transition: background 0.3s, transform 0.3s;
+      outline: none;
+    }
+
+    /* 호버 시 효과 */
+    .slider button:hover {
+      background: rgba(8, 8, 8, 0.234);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    /* 왼쪽 버튼 위치 */
+    .slider .prev {
+      left: 10px;
+    }
+
+    /* 오른쪽 버튼 위치 */
+    .slider .next {
+      right: 10px;
+    }
+
     
     /* Section Styles */
     section {
@@ -458,14 +509,26 @@
     </div>
   </section>
 
-  <!-- Books Section -->
   <section id="books">
     <!-- 한글 버전 -->
     <div class="lang-ko">
       <h2>대표 도서</h2>
       <div class="book-container">
         <div class="book-image">
-          <img src="sum_background.jpg" alt="대표 도서 이미지">
+          <!-- 슬라이더 컨테이너 -->
+          <div class="slider">
+            <button class="prev">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+              </svg>
+            </button>
+            <img id="book-slider-img" src="book_p0.png" alt="대표 도서 이미지">
+            <button class="next">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="book-details">
           <h3>『마음이 말하는 것을 들을 때 비로소 평화가 시작된다』</h3>
@@ -487,7 +550,19 @@
       <h2>Books</h2>
       <div class="book-container">
         <div class="book-image">
-          <img src="sum_background.jpg" alt="Book Image">
+          <div class="slider">
+            <button class="prev">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+              </svg>
+            </button>
+            <img id="book-slider-img" src="book_p0.png" alt="대표 도서 이미지">
+            <button class="next">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="book-details">
           <h3>"When Your Heart Speaks, True Peace Begins"</h3>
@@ -504,6 +579,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- Projects Section -->
   <section id="projects">
@@ -584,6 +660,71 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
-  
+
+
+  <script>
+    // 슬라이더에 사용할 이미지 배열
+    const sliderImages = ["book_p0.png", "book_p1.png", "book_p2.png"];
+    let currentIndex = 0;
+
+    // 한글 버전과 영어 버전 이미지 요소 가져오기
+    const sliderImgElement = document.getElementById("book-slider-img");
+    const sliderImgElementEn = document.getElementById("book-slider-img-en");
+
+    // 화살표 버튼 요소들
+    const prevButtons = document.querySelectorAll('.slider .prev');
+    const nextButtons = document.querySelectorAll('.slider .next');
+
+    // 이미지 업데이트 함수
+    function updateImage() {
+      if (sliderImgElement) {
+        sliderImgElement.src = sliderImages[currentIndex];
+      }
+      if (sliderImgElementEn) {
+        sliderImgElementEn.src = sliderImages[currentIndex];
+      }
+      updateArrows();
+    }
+
+    // 화살표 표시 업데이트: 첫 페이지에서는 왼쪽, 마지막 페이지에서는 오른쪽 숨기기
+    function updateArrows() {
+      // 첫 페이지일 때
+      if (currentIndex === 0) {
+        prevButtons.forEach(button => button.style.display = "none");
+      } else {
+        prevButtons.forEach(button => button.style.display = "block");
+      }
+      // 마지막 페이지일 때
+      if (currentIndex === sliderImages.length - 1) {
+        nextButtons.forEach(button => button.style.display = "none");
+      } else {
+        nextButtons.forEach(button => button.style.display = "block");
+      }
+    }
+
+    // 좌측 버튼 클릭 시 (이전 이미지)
+    prevButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateImage();
+        }
+      });
+    });
+
+    // 우측 버튼 클릭 시 (다음 이미지)
+    nextButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentIndex < sliderImages.length - 1) {
+          currentIndex++;
+          updateImage();
+        }
+      });
+    });
+
+    // 초기화 시 화살표 업데이트
+    updateArrows();
+  </script>
+
 </body>
 </html>
